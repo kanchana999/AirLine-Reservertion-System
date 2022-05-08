@@ -1,0 +1,23 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 8, 2022, 5:28:55 PM
+    Author     : kanchana
+*/
+
+.content-box{width:100%;position: relative;
+         height:110vh;min-height:700px;overflow: auto;position:-webkit-sticky;position:sticky;
+         background-image: url("https://businessmirror.com.ph/wp-content/uploads/2021/05/top01-052021.jpg");       
+         font-family: Oswald,sans-serif;
+         background-size: cover;
+}
+
+
+
+
+
+
+
+

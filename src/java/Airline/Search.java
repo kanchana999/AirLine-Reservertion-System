@@ -11,7 +11,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.Cookie;
+import java.util.*;
 /**
  *
  * @author kanchana
@@ -74,10 +75,28 @@ public class Search extends HttpServlet {
         //processRequest(request, response);
         String airport = request.getParameter("airport");
         String destination = request.getParameter("destination");
+        String date = request.getParameter("date");
+        String passengers = request.getParameter("passengers");
         
-        String quary = "Select * from route where (airport='"+airport+"') AND (destination ='"+destination+"')";
+        
+        
+        String quary = "Select * from route where (airport='"+airport+"') AND (destination ='"+destination+"') AND (date='"+date+"')";
         request.setAttribute("method",quary);
-        request.getRequestDispatcher("Search_view.jsp").forward(request, response);
+        
+        Cookie c = new Cookie("ps",passengers);
+        response.addCookie(c);
+        
+        PrintWriter out = response.getWriter();
+        Cookie ck[] = request.getCookies();
+        
+        int count = ck.length;
+        if(count<3){
+                request.getRequestDispatcher("Search_view.jsp").forward(request, response);
+            }   
+        else{
+                request.getRequestDispatcher("login/login_searchview.jsp").forward(request, response);
+            }    
+        
     }
 
     /**

@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <title>Home</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="sources/mycss.css">
+        <link rel="stylesheet" href="sources/index.css">
         <script src="sources/myscripts.js"></script>
         
          <!--bootstrap for nav bar                 -->
@@ -31,37 +31,40 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 	<!-- End WOWSlider.com HEAD section --></head>
     <body>
         
-        <div class="page-wrapper">
- <div class="nav-wrapper">
-  <div class="grad-bar"></div>
-  <nav class="navbar">
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/Bluestar_%28bus_company%29_logo.svg/1280px-Bluestar_%28bus_company%29_logo.svg.png" alt="Company Logo">
-    <div class="menu-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html"><img src="sources/air logo.PNG" alt="" width="250" height="60"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="btn btn-primary" aria-current="page" href="index.html">&nbsp;&nbsp;Home&nbsp;&nbsp;</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="search.html">&nbsp;&nbsp;Search & Book&nbsp;&nbsp;</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a>
+        </li>
+        
+      </ul>
+      <span class="navbar-text">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">&nbsp;&nbsp;Register&nbsp;&nbsp;</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="login.html">&nbsp;&nbsp;<img src="sources/login.svg" width="15px" height="15px">&nbsp;Login&nbsp;</a>
+        </li>
+        </ul>
+      </span>
     </div>
-    <ul class="nav no-search">
-      <li class="fa fa-fw fa-home"><a href="#">Home</a></li>
-<li class="fa fa-fw fa-search"><a href="search.html">Search</a></li>
-<li class="fa fa-registered">
-<a href="#">Register</a></li>
-      <li class="fa fa-fw fa-envelope"><a href="#">Contact</a></li>
-      <li class="fa fa-fw fa-user"><a href="#">Login</a></li>
-    </ul>
-  </nav>
   </div>
-        </div>
-  
-        <script>
-            $('.menu-toggle').click(function(){
-             $(".nav").toggleClass("mobile-nav");
-             $(this).toggleClass("is-active");
-            });    
-        </script>
-        
-        
-        
+</nav>    
+      
+<div class="content-box">     
     <div class="marquee">
     <p>**Important notice about corona virus(Covid-19) | **Important notice about corona virus(Covid-19) | 
         **Air line delays occures | **Important notice about corona virus(Covid-19) | </p>
@@ -89,7 +92,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         
         
         
-        
+</div>     
         
         
         

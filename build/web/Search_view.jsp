@@ -40,35 +40,53 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     
 	
 <body>
-
-   
-       <div class="page-wrapper">
- <div class="nav-wrapper">
-  <div class="grad-bar"></div>
-  <nav class="navbar">
-    <img src="sources/sl.png" alt="Company Logo">
-    <div class="menu-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+    <%
+        String name;
+       name ="Login";
+        %>
+        
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html"><img src="sources/air logo.PNG" alt="" width="250" height="60"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">&nbsp;&nbsp;Home&nbsp;&nbsp;</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-primary" href="search.html">&nbsp;&nbsp;Search & Book&nbsp;&nbsp;</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a>
+        </li>
+        
+      </ul>
+      <span class="navbar-text">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">&nbsp;&nbsp;Register&nbsp;&nbsp;    </a>
+        </li>
+        <li class="nav-item">
+           <a class="btn btn-success" aria-current="page" href="login.html"><img src="sources/login.svg" width="15px" height="15px">&nbsp;&nbsp;&nbsp;<% out.println(name); %>&nbsp;</a>
+        </li>
+        </ul>
+      </span>
     </div>
-    <ul class="nav no-search">
-      <li class="fa fa-fw fa-home"><a href="#">Home</a></li>
-<li class="fa fa-fw fa-search"><a href="#">Search</a></li>
-<li class="fa fa-registered">
-<a href="#">Register</a></li>
-      <li class="fa fa-fw fa-envelope"><a href="#">Contact</a></li>
-      <li class="fa fa-fw fa-user"><a href="#">Login</a></li>
-    </ul>
-  </nav>
   </div>
-        </div>
-   <script>
-            $('.menu-toggle').click(function(){
-             $(".nav").toggleClass("mobile-nav");
-             $(this).toggleClass("is-active");
-            });    
-        </script>
+</nav>    
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
 
         <div class="content-box">
@@ -76,7 +94,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <h2>Search Airlines</h2>
             <hr>
            
-          
+        
 <%
     String quary =(String)request.getAttribute("method");
             String driver = "com.mysql.jdbc.Driver";
@@ -112,7 +130,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             while(resultSet.next()){
             %>
             <tr class="bg-success">
-                <td><%=resultSet.getString("routeid")%></td>
+                <td><%=resultSet.getInt("routeid")%></td>
                 <td><%=resultSet.getString("airport")%></td>
                 <td><%=resultSet.getString("destination")%></td>
                 <td><%=resultSet.getString("date")%></td>
@@ -125,9 +143,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             }   
             %>
         </table>            
-        </div>
+        </div>  
+        
+        
         <div class="logbutton">
-            <a href="www.google.com"><button type="button" class="btn btn-outline-info">Book your seat right Now !</button></a>
+            <a href="login.html"><button type="button" onclick="alert('Please log in!')" class="btn btn-outline-info">Book your seat right Now !</button></a>
+            <a href="returnservlet"><button type="button" class="btn btn-warning">Return to Search</button></a>
         </div>
         </div>
 
