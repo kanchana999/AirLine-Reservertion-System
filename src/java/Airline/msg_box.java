@@ -85,8 +85,7 @@ public class msg_box extends HttpServlet {
         
         msg_class obj = new msg_class();
         obj.chat_insert(name,message);
-        request.setAttribute("client", name);
-        request.getRequestDispatcher("chatbox.jsp").forward(request, response);
+        response.sendRedirect("chatbox.jsp");
     
     
        

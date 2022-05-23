@@ -19,27 +19,28 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <title>Customer support</title>
-        <script>
-<!--
-function timedRefresh(timeoutPeriod) {
-	setTimeout("location.reload(true);",timeoutPeriod);
-}
-
-window.onload = timedRefresh(10000);
-
-//   -->
-</script>
+        
     </head>
     <body>
         <%
-            String name =(String) request.getAttribute("client");
-
-            
+        String name = null;
+        String kk = null;
+        Cookie ck[] = request.getCookies();   
+        if(ck != null) {    
+            for(int i=0;i<ck.length;i++){
+            kk = ck[i].getName();
+            if(kk.equals("client")){
+            name = ck[i].getValue();       
+             }
+        }
+     }else{
+           name = "customer";
+          }
             %>
          <div class="line-bar">
                     <i><h4>Chat Box 1.0</h4></i>
          </div><br> 
-            
+             
         
         <div class="content-box1">        
                     <div class="chat-box">    
@@ -60,8 +61,10 @@ window.onload = timedRefresh(10000);
                 ResultSet rs =null;
                 Connection con =null;
             %>
-            <table border="1" class="table">
-               
+            <table class="table">
+                <tr>
+                    <th colspan="2">Session started... type your message in the following box</th>
+                </tr>
                 
                 <%
                   try{
@@ -88,23 +91,25 @@ window.onload = timedRefresh(10000);
                     }
                     
                    
-                    
+                response.setIntHeader("Refresh",20);  
                 %>
                
             </table>    
                     </div>   
             </div>
              <div class="send-msg ">
-            
-             <form class="form-inline"action="msg_box"  method="post" >
-            <div class="form-group mx-sm-3 mb-2">
+            <form class="form-inline"action="msg_box"  method="post" >
+            <div class="logbutton">
+                
+                 <div class="form-group mx-sm-3 mb-2">
                 <input type="text" name="name" value="<% out.println(name);%>" hidden/>
-                <input type="text" name="msg" class="form-control" id="inputPassword2" placeholder="type message here">
-            </div>
-                <button style="margin-left:10px" type="submit" class="btn btn-primary">&nbsp;&nbsp;send&nbsp;&nbsp;</button>
+                <input type="text" name="msg" class="form-control" placeholder="type message here">
+                </div>
                 
-             </form> 
-                
+            <button type="submit" class="btn btn-outline-info">Send message</button>
+            <a href="chatbox_close"><button type="button" class="btn btn-danger" onclick="return confirm('are you sure want to exit ?');">Close the session</button></a>
+             </div>
+              </form>   
 </div> 
             
     </body>

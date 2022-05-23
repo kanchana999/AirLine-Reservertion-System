@@ -1,0 +1,102 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 15, 2022, 11:27:38 AM
+    Author     : NERANJAN
+*/
+.form-bg{
+    background: linear-gradient(to bottom,#4bc63a,#ff8cff);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.form_horizontal{
+    font-family: 'lato',sans-serif;
+    text-align: center;
+}
+.form_horizontal .form_icon{
+    line-height: 85px;
+    margin: 0 0 13px
+}
+.form_horizontal .title{
+    color: #fff;
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin: 0 0 35px 0;
+    
+}
+.form_horizontal .form-group{
+    margin: 0 25% 10px;
+    position: relative;
+}
+.form_horizontal .form-control{
+    color: #555;
+    background-color: #fff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    height: 37px;
+    padding: 2px 15px 2px 35px;
+    border: none;
+    border-radius: 5px;
+    
+}
+
+.form_horizontal .form-control::placeholder{
+    color: rgba(0,0,0,0.7);
+    font-size: 13px;
+    text-transform: capitalize;
+    
+}
+
+
+h3{
+    font-family: fantasy;
+    font-size: 50px;
+    color: #7500b3;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.form_horizontal .btn{
+    color: #fff;
+    background-color: #005cb3;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: 20%;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+    border-radius: 20px;  
+}
+
+
+
+
+
+ul{
+    list-style-type: none;
+    
+}
+a:link{
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 1px;
+    margin: 0 0 5px;
+    display: block;
+    transition: o ease-in-out;
+    transition-duration: 500ms;
+        
+    
+}
+a:hover{
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 1px;
+    margin: 0 0 10px;
+    display: block;
+}

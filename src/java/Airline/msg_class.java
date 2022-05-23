@@ -40,6 +40,20 @@ public class msg_class {
             ex.printStackTrace();   
             }
     }
+    public void chat_session_close(){
+        connectdb();
+       try{
+            String query = "DELETE FROM customer_chat;";  
+            st.executeUpdate(query); 
+            
+            con.close();
+            st.close();
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();   
+            }
+    
+    }
     
     
     public void connectdb(){

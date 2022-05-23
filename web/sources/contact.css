@@ -18,7 +18,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     width:60%;position: relative;
          height:60vh;min-height:60vh;overflow: auto;position:-webkit-sticky;position:sticky;
         font-family: Oswald,sans-serif;
-        border:1px inset green;
+        border:1px inset green;font-style: italic;
         margin: 10vh auto;
 }
 .send-msg{

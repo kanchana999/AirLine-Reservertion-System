@@ -4,26 +4,20 @@
  */
 package Airline;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import jakarta.servlet.http.Cookie;
 /**
  *
  * @author kanchana
  */
-@WebServlet(name = "contact", urlPatterns = {"/contact"})
-public class contact extends HttpServlet {
+@WebServlet(name = "chatbox_close", urlPatterns = {"/chatbox_close"})
+public class chatbox_close extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +36,10 @@ public class contact extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet contact</title>");            
+            out.println("<title>Servlet chatbox_close</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet contact at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet chatbox_close at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,7 +57,14 @@ public class contact extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+         msg_class obj = new msg_class();
+        obj.chat_session_close();
+        Cookie ck = new Cookie("client","");
+        ck.setMaxAge(0);
+        response.addCookie(ck);
+        response.sendRedirect("contact.jsp");
+        
     }
 
     /**
@@ -77,32 +78,8 @@ public class contact extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/customer_support";
-        String user = "root";
-        String pw = "";
-        Statement st =null;
-        ResultSet rs = null;
-        Connection con = null;
-        
-        String customer_name = request.getParameter("name2");
-        String customer_email = request.getParameter("email2");
-        try{
-            Class.forName(driver);  
-            con = DriverManager.getConnection(url,user,pw);
-            st = con.createStatement();
-            st.executeUpdate("INSERT INTO customer_request VALUES('"+customer_name+"','"+customer_email+"');");
-        
-        }catch(ClassNotFoundException | SQLException ex){
-            ex.printStackTrace();
-        }
-        Cookie ck = new Cookie("client",customer_name); 
-       response.addCookie(ck);
-       response.sendRedirect("chatbox.jsp");
+        processRequest(request, response);
        
-       
-        
     }
 
     /**

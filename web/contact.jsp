@@ -31,8 +31,8 @@
 	
 <body>
  <% 
-         String name = null;
-           String kk = null;
+         String name ="user";
+         String kk = null;
             Cookie ck[] = request.getCookies();   
          if(ck != null) {    
             for(int i=0;i<ck.length;i++){

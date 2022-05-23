@@ -2,28 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Airline;
-
+package admin_package;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import jakarta.servlet.http.Cookie;
 /**
  *
  * @author kanchana
  */
-@WebServlet(name = "contact", urlPatterns = {"/contact"})
-public class contact extends HttpServlet {
+@WebServlet(name = "admin_pw_change", urlPatterns = {"/admin_pw_change"})
+public class admin_pw_change extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +36,10 @@ public class contact extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet contact</title>");            
+            out.println("<title>Servlet admin_pw_change</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet contact at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet admin_pw_change at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -78,32 +72,27 @@ public class contact extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/customer_support";
-        String user = "root";
-        String pw = "";
-        Statement st =null;
-        ResultSet rs = null;
-        Connection con = null;
-        
-        String customer_name = request.getParameter("name2");
-        String customer_email = request.getParameter("email2");
-        try{
-            Class.forName(driver);  
-            con = DriverManager.getConnection(url,user,pw);
-            st = con.createStatement();
-            st.executeUpdate("INSERT INTO customer_request VALUES('"+customer_name+"','"+customer_email+"');");
-        
-        }catch(ClassNotFoundException | SQLException ex){
-            ex.printStackTrace();
+        PrintWriter out = response.getWriter();
+         
+        String id = request.getParameter("admin_id");
+        String npw = request.getParameter("cnpw");
+        connector obj = new connector();
+        int result = obj.admin_pw_change(id,npw);
+        if(result==1){
+           out.println("<html><body onload=\"alert('Password changed successfuly!');window.location = 'admin_dashboard.jsp'; \"><body></html>");         
+        }else{
+            out.println("<html><body onload=\"alert('Invalid credentials !');window.location = 'admin_dashboard.jsp';\"><body></html>");
+          
         }
-        Cookie ck = new Cookie("client",customer_name); 
-       response.addCookie(ck);
-       response.sendRedirect("chatbox.jsp");
-       
-       
+        
+        
+        
+        
+        
+        
         
     }
+    
 
     /**
      * Returns a short description of the servlet.
