@@ -97,9 +97,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         
 <%
     String quary =(String)request.getAttribute("method");
-            String driver = "com.mysql.jdbc.Driver";
-            String url = "jdbc:mysql://localhost:3306/";
-            String db = "air_line_db";
+            String driver = "com.mysql.cj.jdbc.Driver";
+            String url = "jdbc:mysql://localhost:3306";
+            String db="/airline_reservation_system";
             String user = "root";
             String pw = "";
             try{
@@ -130,9 +130,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             while(resultSet.next()){
             %>
             <tr class="bg-success">
-                <td><%=resultSet.getInt("routeid")%></td>
-                <td><%=resultSet.getString("airport")%></td>
-                <td><%=resultSet.getString("destination")%></td>
+                <td><%=resultSet.getInt("Flight_ID")%></td>
+                <td><%=resultSet.getString("Current_Starting_Location")%></td>
+                <td><%=resultSet.getString("Destination")%></td>
                 <td><%=resultSet.getString("date")%></td>
             </tr>
             <%

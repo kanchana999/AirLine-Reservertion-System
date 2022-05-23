@@ -41,12 +41,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </head>	
 <body>
     <%   
-        String name;
-        String ps;
-        Cookie ck[] = request.getCookies();
-        name = ck[1].getValue();
-        ps = ck[3].getValue();
-        
+       String name = null;
+       String ps= null;
+           String kk = null;
+            Cookie ck[] = request.getCookies();   
+         if(ck != null) {    
+            for(int i=0;i<ck.length;i++){
+            kk = ck[i].getName();
+            if(kk.equals("user")){
+            name = ck[i].getValue();       
+             }
+             if(kk.equals("ps")){
+             ps = ck[i].getValue();
+        }
+        }
+     }else{
+           name = "login";
+          }
     
         %>
         
@@ -67,12 +78,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <li class="nav-item">
           <a class="nav-link " href="#">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="./login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
-        </li>
+         
       </ul>
       <span class="navbar-text">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+          <a class="nav-link" href="./login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;
         <li class="nav-item">
          <button type="button" class="btn btn-success">&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/sources/user.svg" width="15px" height="15px"/>&nbsp;&nbsp;&nbsp;Hi,&nbsp;<%out.println(name);%>&nbsp;&nbsp;&nbsp;</button>       </li>
         </ul>
@@ -92,10 +104,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
            
         
 <%
-    String quary =(String)request.getAttribute("method");
+            String quary =(String)request.getAttribute("method");
             String driver = "com.mysql.jdbc.Driver";
             String url = "jdbc:mysql://localhost:3306/";
-            String db = "air_line_db";
+            String db = "airline_reservation_system";
             String user = "root";
             String pw = "";
             try{
@@ -128,13 +140,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             String sql =quary;    
             resultSet = statement.executeQuery(sql);
             while(resultSet.next()){ 
-            String c =(String) resultSet.getString("routeid");
+            String c =(String) resultSet.getString("Flight_ID");
             %>
             <tr class="bg-success" data-href="">  
                 <td><input type="radio" class="form-check-input-focus-box-shadow" name="rd" required value=<%=c%>></td>
-                <td><%=resultSet.getString("routeid")%></td>
-                <td><%=resultSet.getString("airport")%></td>
-                <td><%=resultSet.getString("destination")%></td>
+                <td><%=resultSet.getString("Flight_ID")%></td>
+                <td><%=resultSet.getString("Current_Starting_Location")%></td>
+                <td><%=resultSet.getString("Destination")%></td>
                 <td><%=resultSet.getString("date")%></td>
             </tr>
             <%

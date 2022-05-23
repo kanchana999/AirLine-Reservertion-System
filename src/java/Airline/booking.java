@@ -75,7 +75,16 @@ public class booking extends HttpServlet {
         //processRequest(request, response);
         Cookie ck[] = request.getCookies();
         PrintWriter out = response.getWriter();
-        String name = ck[1].getValue();
+        String userid = null;
+        String kk = null;
+        for(int i=0;i<ck.length;i++){
+            kk = ck[i].getName();
+            if(kk.equals("id"))
+            {
+                userid = ck[i].getValue();
+            }
+        }
+        
         int tp = Integer.parseInt(request.getParameter("tp"));
         String cls = request.getParameter("class");
         int rid = Integer.parseInt(request.getParameter("rd"));
@@ -85,7 +94,6 @@ public class booking extends HttpServlet {
         
         int price = obj.pricecalculator(cls, ps);
         
-        int userid =obj.getuserid(name);
        
         try{
         obj.booking(userid,tp,rid,cls,ps,price);

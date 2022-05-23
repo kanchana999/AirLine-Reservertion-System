@@ -34,18 +34,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 	
 <body>
 <% 
-    String name;
-    Cookie ck[]= request.getCookies();
-    name = ck[1].getValue();
+     String name = null;
+           String kk = null;
+            Cookie ck[] = request.getCookies();   
+         if(ck != null) {    
+            for(int i=0;i<ck.length;i++){
+            kk = ck[i].getName();
+            if(kk.equals("user")){
+            name = ck[i].getValue();       
+             }
+        }
+     }else{
+           name = "login";
+          }
     
 %>
 
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath}/sources/air logo.PNG" alt="" width="250" height="60"></a>
+    <a class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath}/sources/air logo.png" alt="" width="250" height="60"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -57,14 +67,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <li class="nav-item">
           <a class="nav-link " href="${pageContext.request.contextPath}/contact.jsp">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
-        </li>
+        
       </ul>
       <span class="navbar-text">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+          <a class="nav-link" href="${pageContext.request.contextPath}/login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;
         <li class="nav-item">
-         <button type="button" class="btn btn-success">&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/sources/user.svg" width="15px" height="15px"/>&nbsp;&nbsp;&nbsp;Hi,&nbsp;&nbsp;<% out.println(name);%>&nbsp;&nbsp;&nbsp;</button>       </li>
+         <button type="button" class="btn btn-success"><img src="${pageContext.request.contextPath}/sources/user.svg" width="15px" height="15px"/>&nbsp;Hi,&nbsp;&nbsp;<% out.println(name);%>&nbsp;&nbsp;&nbsp;</button>       </li>
         </ul>
       </span>
     </div>
@@ -83,13 +94,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <div class="form-floating">
                         <select name="airport" class="form-select" id="floatingSelect" aria-label="Floating label select example">    
                             <option selected disabled></option> 
-                            <option value="Abu Dhabi">Abu Dhabi - United Arab Emirates(AUH)</option>
+                            <option value="Dubai">Abu Dhabi - United Arab Emirates(AUH)</option>
                             <option value="Adelaide">Adelaide - Australia(ADL)</option>
                             <option value="Amman">Amman - jordan(AMM)</option>
                             <option value="Amesterdam">Amesterdam - Netherlands(AMS)</option>
                             <option value="Ancona">Ancona - Italy</option>
-                            <option value="Colombo">Colombo - Sri Lanka</option>
-                            <option value="Batticaloa">Batticaloa - Sri Lanka</option>
+                            <option value="Srilanka">Colombo - Sri Lanka</option>
+                            <option value="London">London</option>
                         </select>
                         <label for="floatingSelect">Departing Airport</label>
                         </div>
@@ -98,14 +109,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <div class="form-floating">
                         <select name="destination" class="form-select" id="floatingSelect" aria-label="Floating label select example">    
                             <option selected disabled></option> 
-                            <option value="Abu Dhabi">Abu Dhabi - United Arab Emirates(AUH)</option>
+                           <option value="Dubai">Abu Dubai - United Arab Emirates(AUH)</option>
                             <option value="Adelaide">Adelaide - Australia(ADL)</option>
                             <option value="Amman">Amman - jordan(AMM)</option>
                             <option value="Amesterdam">Amesterdam - Netherlands(AMS)</option>
                             <option value="Ancona">Ancona - Italy</option>
-                            <option value="colombo">Colombo - Sri Lanka</option>
-                            <option value="Batticaloa">Batticaloa - Sri Lanka</option>
-                            <option value="New York">New York - United States (JFK)</option>
+                            <option value="Srilanka">Colombo - Sri Lanka</option>
+                            <option value="Srilanka">Batticaloa - Sri Lanka</option>
+                            <option value="London">London</option>
                         </select>
                         <label for="floatingSelect">Destination Airport</label>
                         </div>

@@ -50,13 +50,11 @@ function myFunction() {
   }
 }
 function check(){
-    var userpw = document.getElementById ( "com_pw" );
+    var userpw = document.getElementById ("com_pw");
     var cpw = document.getElementById ( "inputPasswordOld" );
      var newpw = document.getElementById ( "inputPasswordNew" );
     var newconfirmpw = document.getElementById ( "inputPasswordNewVerify" );
-    if(userpw != cpw){
-        alert("Current password mismatch !");
-    }
+    
     if((newpw != "") && (newcomfirmpw != "")){
     if(newpw != newconfirmpw){
         
@@ -80,15 +78,23 @@ function check(){
     
  <% 
             
-            String name; 
+           String name = null;
+           String kk = null;
             Cookie ck[] = request.getCookies();   
-            name = ck[1].getValue();
-            
-         
+         if(ck != null) {    
+            for(int i=0;i<ck.length;i++){
+            kk = ck[i].getName();
+            if(kk.equals("user")){
+            name = ck[i].getValue();       
+             }
+        }
+     }else{
+           name = "login";
+          }
         %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath}/sources/air logo.PNG" alt="" width="250" height="60"></a>
+    <a class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath}/sources/air logo.png" alt="" width="250" height="60"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -103,14 +109,15 @@ function check(){
         <li class="nav-item">
           <a class="nav-link " href="contact.jsp">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a>
         </li>
-        <li class="nav-item">
-          <a class="btn btn-primary " href="login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
-        </li>
+        
       </ul>
       <span class="navbar-text">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+          <a class="btn btn-primary " href="login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;
         <li class="nav-item">
-         <button type="button" class="btn btn-success">&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/sources/user.svg" width="15px" height="15px"/>&nbsp;&nbsp;&nbsp;Hi,&nbsp;&nbsp;<% out.println(name);%>&nbsp;&nbsp;&nbsp;</button>       </li>
+         <button type="button" class="btn btn-success">&nbsp;<img src="${pageContext.request.contextPath}/sources/user.svg" width="15px" height="15px"/>&nbsp;&nbsp;Hi,&nbsp;&nbsp;<% out.println(name);%>&nbsp;</button>       </li>
         </ul>
       </span>
     </div>
@@ -121,7 +128,8 @@ function check(){
 
             <% 
                 String driver = "com.mysql.jdbc.Driver";
-                String url = "jdbc:mysql://localhost:3306/air_line_db";
+                String url = "jdbc:mysql://localhost:3306/";
+                String db="airline_reservation_system";
                 String user = "root";
                 String pw = "";
                 try{
@@ -150,23 +158,23 @@ function check(){
                 <%
                   try{
                       
-                      con = DriverManager.getConnection(url,user,pw);
+                      con = DriverManager.getConnection(url+db,user,pw);
                       st = con.createStatement();
-                      rs =st.executeQuery("SELECT * FROM users WHERE (user_name='"+name+"');");
+                      rs =st.executeQuery("SELECT * FROM user_details WHERE (User_Name='"+name+"');");
                      
                       while(rs.next()){                          
                 %>
                 <tr class="table-hover">
-                    <td><%=rs.getString("user_id")%></td>
-                     <td><%=rs.getString("user_name")%></td>
-                      <td><%=rs.getString("user_address")%></td>
-                       <td><%=rs.getString("user_age")%></td>
-                        <td><%=rs.getString("register_date")%></td>
-                         <td id ="com_pw" class="hidetext"><%=rs.getString("user_password")%></td>
-                          <td><%=rs.getString("user_tp")%></td>
+                    <td><%=rs.getString("User_ ID")%></td>
+                     <td><%=rs.getString("User_Name")%></td>
+                      <td><%=rs.getString("User_gmail")%></td>
+                       <td><%=rs.getString("User_Age")%></td>
+                        <td><%=rs.getString("Register_Date")%></td>
+                         <td id ="com_pw" class="hidetext"><%=rs.getString("User_Password")%></td>
+                          <td><%=rs.getString("User_phone number")%></td>
                 </tr>
                 <% 
-                    Cookie k = new Cookie("id",rs.getString("user_id"));
+                    Cookie k = new Cookie("id",rs.getString("User_ ID"));
                     response.addCookie(k);
                     }
                     con.close();

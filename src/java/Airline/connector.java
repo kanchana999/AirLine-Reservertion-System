@@ -20,7 +20,7 @@ import jakarta.servlet.http.Cookie;
 public class connector{
 
     String driver = "com.mysql.jdbc.Driver";
-    String url ="jdbc:mysql://localhost:3306/air_line_db";
+    String url ="jdbc:mysql://localhost:3306/airline_reservation_system";
     String user = "root";
     String pw = "";
     Statement st;
@@ -36,7 +36,7 @@ public class connector{
         
         try{
             
-            String quary = "SELECT user_password FROM users WHERE (user_name='"+inquary+"')";
+            String quary = "SELECT User_Password FROM user_details WHERE (User_Name='"+inquary+"')";
             rs = st.executeQuery(quary);
         
             while(rs.next()){
@@ -52,10 +52,10 @@ public class connector{
              return "";
         }
     }
-    public void booking(int uid,int tp,int rid,String c,int ps,int price){
+    public void booking(String uid,int tp,int rid,String c,int ps,int price){
         connectdb();
         try{
-            String query = "INSERT INTO booking VALUES(default,'"+uid+"','"+tp+"','"+rid+"','"+c+"','"+ps+"','"+price+"');";
+            String query = "INSERT INTO booking_details VALUES(default,'"+uid+"','"+tp+"','"+rid+"','"+c+"','"+ps+"','"+price+"');";
             
             st.executeUpdate(query);
            
@@ -71,7 +71,7 @@ public class connector{
     }
     public void booking_delete(int bid){
         
-        String query = "DELETE FROM booking WHERE (booking_id='"+bid+"')";
+        String query = "DELETE FROM booking_details WHERE (booking_id='"+bid+"')";
         connectdb();
         try{
             st.executeUpdate(query);
@@ -89,7 +89,7 @@ public class connector{
         connectdb();
         
         try{
-                String query = "update users set user_password='"+comfirm_npw+"'where (user_name='"+user+"');";
+                String query = "update user_details set User_Password='"+comfirm_npw+"'where (User_Name='"+user+"');";
                 st.executeUpdate(query);
                 return 1;
 
@@ -121,9 +121,9 @@ public class connector{
          connectdb();
          try{
             
-            String quary = "SELECT user_id FROM users WHERE (user_name='"+inquary+"')";
+            String quary = "SELECT User_ID FROM user_details WHERE (User_Name='"+inquary+"')";
             rs = st.executeQuery(quary);
-        
+       
             while(rs.next()){
                 uid =Integer.parseInt(rs.getString("user_id"));  
             }
@@ -153,6 +153,7 @@ public class connector{
             }
          }
                
+   
  }   
     
     

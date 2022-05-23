@@ -14,8 +14,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
          background-size: cover;
 }
 
+.content-box1{
+    width:60%;position: relative;
+         height:60vh;min-height:60vh;overflow: auto;position:-webkit-sticky;position:sticky;
+        font-family: Oswald,sans-serif;
+        border:1px inset green;
+        margin: 10vh auto;
+}
+.send-msg{
+    width: 50%;position: relative;height:4vh;
+    margin: 8vh auto;
+}
+.line-bar{
+    width: 100%;height: 5vh;
+    color:white;background-color: blue;text-align: center;position:fixed;
+}
 
-
+.chat-box{
+    width:80%;height:80vh;min-height:110vh;overflow: auto;position:-webkit-sticky;position:sticky;
+    margin: 0 auto;
+}
 
 
 

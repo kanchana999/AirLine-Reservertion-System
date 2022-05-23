@@ -80,7 +80,7 @@ public class Search extends HttpServlet {
         
         
         
-        String quary = "Select * from route where (airport='"+airport+"') AND (destination ='"+destination+"') AND (date='"+date+"')";
+        String quary = "Select * from flight_details where (Current_Starting_Location='"+airport+"') AND (Destination ='"+destination+"') AND (date='"+date+"');";
         request.setAttribute("method",quary);
         
         Cookie c = new Cookie("ps",passengers);
@@ -88,14 +88,30 @@ public class Search extends HttpServlet {
         
         PrintWriter out = response.getWriter();
         Cookie ck[] = request.getCookies();
+        String kk = null;
+        String cc = null;
         
-        int count = ck.length;
-        if(count<3){
+        int count =ck.length;
+        if(ck != null){
+        for(int i=0;i<count;i++)
+        {
+            kk = ck[i].getName();
+            if(kk.equals("user"))
+            {
+                request.getRequestDispatcher("login/login_searchview.jsp").forward(request, response);  
+            }
+        }
+        request.getRequestDispatcher("Search_view.jsp").forward(request, response);
+        }else{
                 request.getRequestDispatcher("Search_view.jsp").forward(request, response);
-            }   
-        else{
-                request.getRequestDispatcher("login/login_searchview.jsp").forward(request, response);
-            }    
+             }
+        
+        
+           //request.getRequestDispatcher("login/login_searchview.jsp").forward(request, response);  
+       
+             
+        
+             
         
     }
 

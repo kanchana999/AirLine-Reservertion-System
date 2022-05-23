@@ -31,17 +31,23 @@
 	
 <body>
  <% 
-            
-            String name;
-            String id;
+         String name = null;
+           String kk = null;
             Cookie ck[] = request.getCookies();   
-            name = ck[1].getValue();
-            id = ck[2].getValue();
-         
+         if(ck != null) {    
+            for(int i=0;i<ck.length;i++){
+            kk = ck[i].getName();
+            if(kk.equals("user")){
+            name = ck[i].getValue();       
+             }
+        }
+     }else{
+           name = "user";
+          }
         %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath}/sources/air logo.PNG" alt="" width="250" height="60"></a>
+    <a class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath}/sources/air logo.png" alt="" width="250" height="60"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -56,29 +62,30 @@
         <li class="nav-item">
           <a class="btn btn-primary " href="#">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
-        </li>
+        
       </ul>
       <span class="navbar-text">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+          <a class="nav-link" href="login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
+        </li>&nbsp;&nbsp;&nbsp;
         <li class="nav-item">
-         <button type="button" class="btn btn-success">&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/sources/user.svg" width="15px" height="15px"/>&nbsp;&nbsp;&nbsp;Hi,&nbsp;&nbsp;<% out.println(name);%>&nbsp;&nbsp;&nbsp;</button>       </li>
+         <button type="button" class="btn btn-success"><img src="${pageContext.request.contextPath}/sources/user.svg" width="15px" height="15px"/>&nbsp;Hi,&nbsp;&nbsp;<% out.println(name);%>&nbsp;&nbsp;&nbsp;</button>       </li>
         </ul>
       </span>
     </div>
   </div>
 </nav>    
   <div class="content-box"> 
-<div class="card" style="width:60%;margin: 0 auto;margin-top:80px;opacity: 0.8;
-     border:2px solid black;box-shadow: 6px 15px 50px 25px black;
+<div class="card" style="width:60%;margin: 0 auto;margin-top:80px;opacity:1;
+     border:2px solid black;box-shadow: 6px 15px 30px 25px black;
      ">
     <div class="card card-outline-secondary">
                         <div class="card-header">
                             <h3 class="mb-0">Contact US</h3>
                         </div>
                         <div class="card-body">
-                            <form class="form" role="form" autocomplete="off">
+                            <form class="form" role="form" autocomplete="off" action="contact" method="post">
                                 <fieldset>
                                     <label for="name2" class="mb-0">Name</label>
                                     <div class="row mb-1">
@@ -92,13 +99,8 @@
                                             <input type="text" name="email2" id="email2" class="form-control" required="">
                                         </div>
                                     </div>
-                                    <label for="message2" class="mb-0">Message</label>
-                                    <div class="row mb-1">
-                                        <div class="col-lg-12">
-                                            <textarea rows="6" name="message2" id="message2" class="form-control" required=""></textarea>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-secondary btn-lg float-right">Send Message</button>
+                                   
+                                    <button type="submit" class="btn btn-outline-warning btn-lg float-right">Contact Agent</button>
                                 </fieldset>
                             </form>
                         </div>

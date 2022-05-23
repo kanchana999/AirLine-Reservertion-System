@@ -83,7 +83,7 @@ public class login extends HttpServlet {
         connector con = new connector();
         String result = con.select(username);
         
-        if(result.equals(pw)){
+  if(result.equals(pw)){
             Cookie ck = new Cookie("user",username);
             response.addCookie(ck);    
             response.sendRedirect("login_dashboard.jsp");
@@ -96,8 +96,8 @@ public class login extends HttpServlet {
             request.getRequestDispatcher("login.html").include(request,response);
             out.println("<html><body onload=\"alert('Invalid user password !')\"><body></html>");
         }
-    } 
-
+    
+    }
     /**
      * Returns a short description of the servlet.
      *

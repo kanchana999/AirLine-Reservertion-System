@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
 <!DOCTYPE html>
 <!--
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -39,18 +40,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </head>
 	
 <body>
- <% 
-            
-            String name;
-            String id;
-            Cookie ck[] = request.getCookies();   
-            name = ck[1].getValue();
-            id = ck[2].getValue();
+ <%  
+            String id = null;
+            String name = null;
+           String kk = null;
+           Cookie ck[] = request.getCookies();   
+         if(ck != null) {    
+            for(int i=0;i<ck.length;i++){
+            kk = ck[i].getName();
+            if(kk.equals("user")){
+            name = ck[i].getValue();       
+             }
+            if(kk.equals("id")){
+            id = ck[i].getValue();       
+             } 
+        }
+     }else{
+           name = "login";
+          }
          
         %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath}/sources/air logo.PNG" alt="" width="250" height="60"></a>
+    <a class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath}/sources/air logo.png" alt="" width="250" height="60"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -65,14 +77,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <li class="nav-item">
           <a class="nav-link " href="#">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a>
         </li>
-        <li class="nav-item">
-          <a class="btn btn-primary " href="login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
-        </li>
+        
       </ul>
       <span class="navbar-text">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+          <a class="btn btn-primary " href="login_dashboard.jsp">&nbsp;Dashboard&nbsp;</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;
         <li class="nav-item">
-         <button type="button" class="btn btn-success">&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/sources/user.svg" width="15px" height="15px"/>&nbsp;&nbsp;&nbsp;Hi,&nbsp;&nbsp;<% out.println(name);%>&nbsp;&nbsp;&nbsp;</button>       </li>
+         <button type="button" class="btn btn-success"><img src="${pageContext.request.contextPath}/sources/user.svg" width="15px" height="15px"/>&nbsp;Hi,&nbsp;&nbsp;<% out.println(name);%>&nbsp;&nbsp;&nbsp;</button>       </li>
         </ul>
       </span>
     </div>
@@ -83,7 +96,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
             <% 
                 String driver = "com.mysql.jdbc.Driver";
-                String url = "jdbc:mysql://localhost:3306/air_line_db";
+                String url = "jdbc:mysql://localhost:3306/airline_reservation_system";
                 String user = "root";
                 String pw = "";
                 try{
@@ -113,39 +126,40 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </tr>
                 <%
                   try{
-                      
-                      
+                                  
                       con = DriverManager.getConnection(url,user,pw);
                       st = con.createStatement();
-                      rs =st.executeQuery("SELECT * FROM booking WHERE (user_id='"+id+"');");
-                     
+                      rs =st.executeQuery("SELECT * FROM booking_details WHERE (User_ID='"+id+"');");
                       while(rs.next()){                          
                 %>
                 <tr class="table-info">
                     <td><%=rs.getString("booking_id")%></td>
                      <td><%=rs.getString("user_id")%></td>
-                      <td><%=rs.getString("tp")%></td>
-                       <td><%=rs.getString("routeid")%></td>
+                      <td><%=rs.getString("contact")%></td>
+                       <td><%=rs.getString("flight_id")%></td>
                         <td><%=rs.getString("class")%></td>
-                         <td><%=rs.getString("no_of_passengers")%></td>
+                         <td><%=rs.getString("passengers")%></td>
                           <td><%=rs.getString("price")%></td>
                           <td><button type="submit" class="btn btn-outline-danger" name="bt" value="<%=rs.getString("booking_id")%>"><img src="sources/close.svg" width="20px" height="20px"/></button></td>
+
                 </tr>
                 <% 
                     }
+
                     con.close();
                  
                 }catch(SQLException ex)
                     {
                         ex.printStackTrace();
                     }
-            
+
                     
                 %>
                
             </table>
         </form>
-                <div class="logbutton">
+        <div class="logbutton">
+            <a href="ticket_print.jsp"><button type="button" class="btn btn-outline-info">Download Digital Ticket</button></a>
             <a href="login_dashboard.jsp"><button type="button" class="btn btn-warning">Return to Dashboard</button></a>
         </div>
                 
